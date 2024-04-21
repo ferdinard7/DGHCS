@@ -18,3 +18,9 @@ export const prismaClient = new PrismaClient({
 app.listen(PORT, () => {
     console.log(`App working on port ${PORT}`)
 })
+
+
+// datasource db {
+//     provider = "postgresql"
+//     url      = env("DATABASE_URL")
+//   }
