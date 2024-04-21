@@ -12,12 +12,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from "./sendemail";
 
 
-
 const generateStudentID = (): string => {
     // Generate a random 3-digit number
     const randomNumber = Math.floor(100 + Math.random() * 900);
     return `${randomNumber}`;
   };
+
+
+  export const homePage = (req: Request, res: Response) => {
+     res.status(200).send({message: "WELCOME TO DCGHS BACKEND"})
+  }
 
 
   export const signup = async (req: Request, res: Response, next: NextFunction) => {

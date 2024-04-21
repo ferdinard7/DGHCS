@@ -1,16 +1,17 @@
 import { Router } from "express";
 import { errorHandler } from "../error-handler";
 import authMiddleware from "../middlewares/auth";
-import { currentUser, deleteUser, login, searchUser, signup, updateUser } from "../controllers/auth";
+import { currentUser, deleteUser, homePage, login, searchUser, signup, updateUser } from "../controllers/auth";
 import adminMiddleware from "../middlewares/admin";
 import { forgotPassword } from "../controllers/password";
 // import adminMiddleware from "../middlewares/admin";
 
 const authRoutes: Router = Router();
 
+authRoutes.get("/", errorHandler(homePage));
 // REGISTER ROUTE
 // ONLY ADMIN CAN CREATE NEW STUDENT
-authRoutes.post("/signup", [authMiddleware, adminMiddleware], errorHandler(signup));
+authRoutes.post("/signup", [authMiddleware, adminMiddleware],errorHandler(signup));
 
 
 authRoutes.post("/login", errorHandler(login));
