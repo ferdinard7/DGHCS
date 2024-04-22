@@ -10,6 +10,22 @@ app.use(express.json());
 app.use(errorMiddleware);
 app.use("/api", rootRouter);
 
+async function testConnection() {
+    const prisma = new PrismaClient();
+  
+    try {
+      await prisma.$connect();
+      console.log('Database connection successful');
+    } catch (error) {
+      console.error('Unable to connect to database:', error);
+    } 
+  }
+
+//   finally {
+//     await prisma.$disconnect();
+//   }
+  testConnection();
+
 export const prismaClient = new PrismaClient({
     log:["query"]
 })
@@ -23,4 +39,9 @@ app.listen(PORT, () => {
 // datasource db {
 //     provider = "postgresql"
 //     url      = env("DATABASE_URL")
+//   }
+
+// datasource db {
+//     provider = "postgresql"
+//     url = env("POSTGRES_PRISMA_URL") // uses connection pooling
 //   }
