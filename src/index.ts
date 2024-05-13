@@ -3,9 +3,11 @@ import { PORT } from "./secrets";
 import rootRouter from "./routes";
 import { PrismaClient } from "@prisma/client";
 import { errorMiddleware } from "./middlewares/error";
+import cors = require("cors");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(errorMiddleware);
 app.use("/api", rootRouter);
